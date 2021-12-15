@@ -1,3 +1,19 @@
+# Overview of CICD Plan
+The idea was to develop and test a MIT licensed multipage Bootstrap/JavaScript template repository so that it could be easily replicated and deployed for future website development.
+
+# GitHub Demo
+The website can be viewed at https://gurby123.github.io/AppBootStrap/
+The images on this website are not free and are only for demo purposes. 
+
+# WorkFlow
+The website was retrieved for a Themefisher deom with MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests have all failed. 
+
+# Lessons Learnt
+
+Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fails with numerous node.js dependencies that have been deprecated. A related problem is that the global gulp.cli needs to be installed and it requires the sudo command. It may there not be practical or possible to create a docker image in the normal way and may need to be pre-installed in the linux distro. 
+
+
+
 # Small Apps By Themefisher
 Small Apps is a clean and modern Free responsive app landing-page template for Mobile App. Built with Bootstrap 4.x frontend Framework. The codebase is well organized, very easy to customize, and SEO optimized.
 
