@@ -64,6 +64,28 @@ docker build . -t  appbootstrap3
 Docker run command:
 docker run -d -p 8080:8080 appbootstrap3
 
+# Docker3
+
+FROM ubuntu:18.04
+MAINTAINER uli.hitzel@gmail.com
+EXPOSE 8080
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Singapore
+
+RUN apt-get update
+RUN apt-get install -y nodejs npm
+ENV USER root
+RUN npm install -g express-generator
+RUN npm install express --save
+RUN useradd -ms /bin/bash user
+COPY app.js /home/user/app.js
+COPY start.sh /home/user/start.sh
+RUN chmod a+x /home/user/start.sh
+USER user
+WORKDIR /home/user
+
+CMD ["sh","/home/user/start.sh"]
+
 # Lessons Learned
 
 Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fails with numerous node.js dependencies that have been deprecated. A related problem is that the global gulp.cli needs to be installed and it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and as the gulp dependecy may need to be pre-installed in the linux distro. 
