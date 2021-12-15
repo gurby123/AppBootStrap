@@ -6,7 +6,7 @@ The website can be viewed at https://gurby123.github.io/AppBootStrap/
 The images on this website are not free and are only for demo purposes. 
 
 # WorkFlow
-The website was retrieved for a Themefisher deom with MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests have all failed. I am still on completing the integration stage so that I can progress to the deployment phase at a private server. 
+The website was retrieved for a Themefisher demo with an MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests have all failed. I am still on completing the integration stage so that I can progress to the deployment phase at a private server. 
 
 # Lessons Learned
 
