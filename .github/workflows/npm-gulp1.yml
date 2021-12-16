@@ -31,6 +31,10 @@ jobs:
       env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      run: |
+         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    
+    - name: Build Docker
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     
   
