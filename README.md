@@ -6,15 +6,15 @@ The website can be viewed at https://gurby123.github.io/AppBootStrap/
 The images on this website are not free and are only for demo purposes. 
 
 # WorkFlow
-The website was retrieved for a Themefisher demo with an MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests have all failed. I am still on completing the integration stage so that I can progress to the deployment phase at a private server. 
+The website was retrieved from a Themefisher demo with an MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests have all failed. I am still on completing the integration stage so that I can progress to the deployment phase at a private server. 
 
 # Docker1 
 
 The Docker file with ALPINE and python broke the images and hyperlinks of the website giving a skeletal website witohut the bells and wistles of CSS and SASS. 
 
 Dockerfile code was as follows:
+```
 FROM alpine
-MAINTAINER uli.hitzel@gmail.com
 EXPOSE 8080
 RUN apk update
 RUN apk add python2
@@ -22,25 +22,29 @@ COPY index.html /tmp/index.html
 COPY start.sh /tmp/start.sh
 USER 1000
 CMD ["sh","/tmp/start.sh"]
-
+```
 start.sh was as follows: 
+```
 cd /tmp
 mkdir www
 cp index.html www
 echo "<hr>Running on $(hostname)" >> www/index.html
 cd www
 python -m SimpleHTTPServer 8080
-
+```
 Docker Build command was as follows:
+```
 docker build . -t  appbootstrap
-
+```
 Docker run command was as follows:
+```
 docker run -d -p 8080:8080 appbootstrap
-
+```
 # Docker2
 Still install python to display index.html but also installed node.js, npm and gulp. There was no inprovement with navigating hyperlinks, images and CSS
 
 The Dockerfile code is as follows:
+```
 FROM mhart/alpine-node:latest
 
 RUN apk update
@@ -57,26 +61,30 @@ COPY index.html /tmp/index.html
 COPY start.sh /tmp/start.sh
 USER 1000
 CMD ["sh","/tmp/start.sh"]
-
+```
 Docker build command:
+```
 docker build . -t  appbootstrap3
-
+```
 Docker run command:
+```
 docker run -d -p 8080:8080 appbootstrap3
-
+```
 # Docker3
 Docker3 finally worked in displaying the webiste with nginx from alpine. It is working because of the bootstrap code and the advance users will need to figure out the setting to use nodejs and gulp on this website template. However Nodejs 12.x passed the installtion while 14.x and 16.x failed
 
 Dockerfile is as follows:
+```
 FROM nginx:alpine
 ## Copy a new configuration file setting listen port to 8080
 COPY ./default.conf /etc/nginx/conf.d/
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
-
+```
 
 default.conf is as follows:
-server {
+
+```server {
     listen       8080;
     server_name  localhost;
 
@@ -92,19 +100,23 @@ server {
         root   /usr/share/nginx/html;
     }
 }
-
+```
 Docker build command:
+```
 docker build . -t  appbootstrap
-
-Docker run command
+```
+Docker run command:
+```
 docker run -d -p 8080:8080 appbootstrap
-
+```
 Command to check port usage:
+```
 lsof -n -i4TCP:8080
-
+```
 Comand to kill port usage
+```
 kill -9 10653 (where 10653 is the pid from earlier occupying 8080)
-
+```
 # Lessons Learned
 
 Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fails with numerous node.js dependencies that have been deprecated. A related problem is that the global gulp.cli needs to be installed and it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and as the gulp dependecy may need to be pre-installed in the linux distro. 
