@@ -30,10 +30,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     
-    - name: docker deploy on Docker Hub
-      uses: actions/docker/cli@master
-      with:
-          args: build -t gurby123/AppBootStrap .
+  
     - name: docker login
       uses: actions/docker/login@master
       env:
