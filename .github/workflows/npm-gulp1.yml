@@ -32,7 +32,7 @@ jobs:
     
   
     - name: docker login
-      uses: actions/docker/login@master
+      uses: docker/login-action
       env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
