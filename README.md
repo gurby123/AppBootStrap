@@ -125,8 +125,24 @@ kill -9 10653 (where 10653 is the pid from earlier occupying 8080)
 ```
 
 # DockerHub
-While I was able to work ith Docker Desktop locally and up load the builds, this was not possible with the on Docker Hub Account acount. They have added a requirment of tagnmes and where automatic process will be provided with Docker Pro account. So while local images are build and run, the Docker Hub account was not able to get the latest build. 
+While I was able to work ith Docker Desktop locally and up load the builds, this was not possible with the on Docker Hub Account acount. They have added a requirment of tagnmes and where apparently automatic processing through github will only be provided with Docker Pro account. So while local images are build and run, the Docker Hub account was not able to get the latest build. Followed steps from: (https://blog.bitsrc.io/https-medium-com-adhasmana-how-to-do-ci-and-cd-of-node-js-application-using-github-actions-860007bebae6)
 
+Code used in the yml file is listed below:
+```
+# - name: docker login
+    #   env:
+    #       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    #       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    #   run: |
+    #      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    
+    # - name: Build Docker
+    #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    
+  
+    # - name: Docker Push
+    #   run: docker push ${{secrets.DOCKER_USERNAME}}/appbootstrap:mylatest
+```
 # SocialBank.ga
 This is my own VPS at interserver.net. It has multiple hosts including Data2Int.com and SocialBank.ga. While I have successfully set up the secretkeys on Github with the Host, SSHKEY, PORT and USERNME, I am not able to automatically update the website everytime there is change in code at the local computer. At this stage I am simply not able to trigger the deploy1.yml to execute. Follow steps from: (https://dev.to/knowbee/how-to-setup-continuous-deployment-of-a-website-on-a-vps-using-github-actions-54im)
 
