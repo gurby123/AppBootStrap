@@ -27,18 +27,18 @@ jobs:
         npm install
         npm audit fix --force
         npm install --global gulp-cli
-    - name: docker login
-      env:
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      run: |
-         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    # - name: docker login
+    #   env:
+    #       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    #       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    #   run: |
+    #      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     
-    - name: Build Docker
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    # - name: Build Docker
+    #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     
   
-    - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USERNAME}}/appbootstrap:mylatest
+    # - name: Docker Push
+    #   run: docker push ${{secrets.DOCKER_USERNAME}}/appbootstrap:mylatest
       
         
