@@ -181,7 +181,9 @@ name: Deployment
 
 # Lessons Learned
 
-Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fails with numerous node.js dependencies that have been deprecated. A related problem is that the global gulp.cli needs to be installed and it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and as the gulp dependecy may need to be pre-installed in the linux distro. 
+Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fail on Github testingbecause of the numerous node.js dependencies that have been deprecated. A related problem is that the global gulp.cli needs to be installed it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and therefore the gulp dependencies may need to be pre-installed in the selected linux distro. 
+
+Overall my experiences seems to suggest it it may be best to SSH into the production server and then carry out git-actions. This may save us the headache of moving from local to the live server where there are other dependencies depending on the hosting companies. Docker may be usful to quickly test out the Apps on different platforms. 
 
 
 
