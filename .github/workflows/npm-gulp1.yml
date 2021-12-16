@@ -39,6 +39,6 @@ jobs:
     
   
     - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USERNAME}}/appbootstrap
-      tags: ${{ secrets.DOCKER_USERNAME }}/appbootstrap:latest
+      run: docker push ${{secrets.DOCKER_USERNAME}}/appbootstrap:mylatest
+      
         
