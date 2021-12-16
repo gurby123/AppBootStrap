@@ -39,5 +39,5 @@ jobs:
     
   
     - name: Docker Push
-      run: docker push ${{secrets.DOCKER_USERNAME}}/appbootstrap
+      run: docker push ${{secrets.DOCKER_USERNAME}}/appbootstrap:latest
         
