@@ -123,6 +123,45 @@ Comand to kill port usage
 ```
 kill -9 10653 (where 10653 is the pid from earlier occupying 8080)
 ```
+
+# DockerHub
+While I was able to work ith Docker Desktop locally and up load the builds, this was not possible with the on Docker Hub Account acount. They have added a requirment of tagnmes and where automatic process will be provided with Docker Pro account. So while local images are build and run, the Docker Hub account was not able to get the latest build. 
+
+# SocialBank.ga
+This is my own VPS at interserver.net. It has multiple hosts including Data2Int.com and SocialBank.ga. While I have successfully set up the secretkeys on Github with the Host, SSHKEY, PORT and USERNME, I am not able to automatically update the website everytime there is change in code at the local computer. At this stage I I am simply not able to trigger the deploy1.yml to execute.
+
+deploy1.yml is as follows:
+```
+name: Deployment
+  on: 
+   push:
+     branches: [ master]
+
+  jobs:
+   job_one:
+     name: Deploy
+     runs-on: ubuntu-latest
+     steps:
+     - name: test
+       uses: appleboy/ssh-action@master
+       env:
+        HOST: ${{secrets.HOST}}
+        USERNAME: ${{secrets.USERNAME}}
+        PORT: ${{secrets.PORT}}
+        SSHKEY: ${{secrets.SSHKEY}}
+       with:
+        source: "."
+        target: "var/www/socialbank.ga/html/"
+     - name: Execute
+       uses: appleboy/ssh-action@master
+       with: 
+        HOST: ${{secrets.HOST}}
+        USERNAME: ${{secrets.USERNAME}}
+        PORT: ${{secrets.PORT}}
+        SSHKEY: ${{secrets.SSHKEY}}
+        script: ls
+        ```
+
 # Lessons Learned
 
 Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fails with numerous node.js dependencies that have been deprecated. A related problem is that the global gulp.cli needs to be installed and it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and as the gulp dependecy may need to be pre-installed in the linux distro. 
