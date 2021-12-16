@@ -125,7 +125,7 @@ kill -9 10653 (where 10653 is the pid from earlier occupying 8080)
 ```
 
 # DockerHub
-While I was able to work ith Docker Desktop locally and up load the builds, this was not possible with the on Docker Hub Account acount. They have added a requirment of tagnmes and where apparently automatic processing through github will only be provided with Docker Pro account. So while local images are build and run, the Docker Hub account was not able to get the latest build. Followed steps from: (https://blog.bitsrc.io/https-medium-com-adhasmana-how-to-do-ci-and-cd-of-node-js-application-using-github-actions-860007bebae6)
+While I was able to work ith Docker Desktop locally and up load the builds, this was not possible with the free online Docker Hub Account. They have added a requirment of tagnmes and where apparently, automatic processing through github may be only provided with Docker Pro account. So while local images are build and run, the Docker Hub account was not able to get the latest build. I followed steps from: (https://blog.bitsrc.io/https-medium-com-adhasmana-how-to-do-ci-and-cd-of-node-js-application-using-github-actions-860007bebae6)
 
 Code used in the yml file is listed below:
 ```
@@ -144,7 +144,7 @@ Code used in the yml file is listed below:
     #   run: docker push ${{secrets.DOCKER_USERNAME}}/appbootstrap:mylatest
 ```
 # SocialBank.ga
-This is my own VPS at interserver.net. It has multiple hosts including Data2Int.com and SocialBank.ga. While I have successfully set up the secretkeys on Github with the Host, SSHKEY, PORT and USERNME, I am not able to automatically update the website everytime there is change in code at the local computer. At this stage I am simply not able to trigger the deploy1.yml to execute. Follow steps from: (https://dev.to/knowbee/how-to-setup-continuous-deployment-of-a-website-on-a-vps-using-github-actions-54im)
+This is my own VPS at interserver.net. The free domain name was register at FREENOM. It has multiple hosting including Data2Int.com and SocialBank.ga. While I successfully set up the secretkeys on Github with the Host, SSHKEY, PORT and USERNME, I am not able to automatically update the website everytime there is change in code at the local computer. At this stage I am simply not able to trigger the deploy1.yml to execute. Follow steps from: (https://dev.to/knowbee/how-to-setup-continuous-deployment-of-a-website-on-a-vps-using-github-actions-54im)
 
 deploy1.yml is as follows:
 ```
@@ -181,9 +181,9 @@ name: Deployment
 
 # Lessons Learned
 
-Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fail on Github testingbecause of the numerous node.js dependencies that have been deprecated. A related problem is that the global gulp.cli needs to be installed it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and therefore the gulp dependencies may need to be pre-installed in the selected linux distro. 
+Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fail on Github testing because of the numerous node.js dependencies that have been deprecated. A related problem is that if the global gulp.cli needs to be installed it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and therefore the gulp dependencies may need to be pre-installed in the selected linux distro. 
 
-Overall my experiences seems to suggest it it may be best to SSH into the production server and then carry out git-actions. This may save us the headache of moving from local to the live server where there are other dependencies depending on the hosting companies. Docker may be usful to quickly test out the Apps on different platforms. 
+Overall my experiences seems to suggest it it may be best to SSH into the production server and then carry out git-actions. This may save us the headache of moving from local to the live server where there are often other dependencies by the hosting platforms. Docker may be usful to quickly test out the Apps on different platforms. 
 
 
 
