@@ -1,0 +1,32 @@
+  name: Deployment
+  on: 
+   push:
+     branches: [ master]
+
+  jobs:
+   job_one:
+     name: Deploy
+     runs-on: ubuntu-latest
+     steps:
+     - name: test
+       uses: appleboy/ssh-action@master
+       env:
+        HOST: ${{secrets.HOST}}
+        USERNAME: ${{secrets.USERNAME}}
+        PORT: ${{secrets.PORT}}
+        SSHKEY: ${{secrets.SSHKEY}}
+       with:
+        source: "."
+        target: "var/www/socialbank.ga/html/"
+     - name: Execute
+       uses: appleboy/ssh-action@master
+       with: 
+        HOST: ${{secrets.HOST}}
+        USERNAME: ${{secrets.USERNAME}}
+        PORT: ${{secrets.PORT}}
+        SSHKEY: ${{secrets.SSHKEY}}
+        script: ls
+
+
+
+
