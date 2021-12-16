@@ -14,9 +14,9 @@ The images on this website are not free and are only for demo purposes.
 # WorkFlow
 The website was retrieved from a Themefisher demo with an MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests on 14.x and 16.x have failed. I am able to successfully integrate github-actions with the local machine using Node.js 12.x. The push function to the VPS server and Docker Hub is still work in progress.
 
-#Google Cloud
+# Google Cloud
 
-Start by trying to use gcr.io as suggested by the professor's node.api demo but soon realized that registry and artifacts hosting is only possible for paid account. So decided to use my own server.
+Start by trying to use gcr.io as suggested by the professor's node.api demo but soon realized that registry and artifacts hosting is only possible for paid account. So I finally decided to use my own server.
 
 # Docker1 
 
