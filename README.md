@@ -1,13 +1,18 @@
 # Overview of CICD Plan
 The idea was to develop and test a MIT licensed multipage Bootstrap/JavaScript template repository so that it could be easily replicated and deployed for future website development. Any changes to the website should automatically trigger a test before it is merged into the project. 
 
+
+
+![Optional Text](../main/screenshots/diagram.png)
+
+
+
 # GitHub Demo
 The website can be viewed at https://gurby123.github.io/AppBootStrap/
 The images on this website are not free and are only for demo purposes. 
 
 # WorkFlow
-The website was retrieved from a Themefisher demo with an MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests have all failed. I am still on completing the integration stage so that I can progress to the deployment phase at a private server. 
-
+The website was retrieved from a Themefisher demo with an MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests on 14.x and 16.x have failed. I am able to successfully integrate github-actions with the local machine using Node.js 12.x. The push function to the VPS server and Docker Hub is still work in progress.
 # Docker1 
 
 The Docker file with ALPINE and python broke the images and hyperlinks of the website giving a skeletal website witohut the bells and wistles of CSS and SASS. 
@@ -117,9 +122,67 @@ Comand to kill port usage
 ```
 kill -9 10653 (where 10653 is the pid from earlier occupying 8080)
 ```
+
+# DockerHub
+While I was able to work ith Docker Desktop locally and up load the builds, this was not possible with the free online Docker Hub Account. They have added a requirment of tagnmes and where apparently, automatic processing through github may be only provided with Docker Pro account. So while local images are build and run, the Docker Hub account was not able to get the latest build. I followed steps from: (https://blog.bitsrc.io/https-medium-com-adhasmana-how-to-do-ci-and-cd-of-node-js-application-using-github-actions-860007bebae6)
+
+Code used in the yml file is listed below:
+```
+# - name: docker login
+    #   env:
+    #       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    #       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    #   run: |
+    #      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    
+    # - name: Build Docker
+    #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    
+  
+    # - name: Docker Push
+    #   run: docker push ${{secrets.DOCKER_USERNAME}}/appbootstrap:mylatest
+```
+# SocialBank.ga
+This is my own VPS at interserver.net. The free domain name was register at FREENOM. It has multiple hosting including Data2Int.com and SocialBank.ga. While I successfully set up the secretkeys on Github with the Host, SSHKEY, PORT and USERNME, I am not able to automatically update the website everytime there is change in code at the local computer. At this stage I am simply not able to trigger the deploy1.yml to execute. Follow steps from: (https://dev.to/knowbee/how-to-setup-continuous-deployment-of-a-website-on-a-vps-using-github-actions-54im)
+
+deploy1.yml is as follows:
+```
+name: Deployment
+  on: 
+   push:
+     branches: [ master]
+
+  jobs:
+   job_one:
+     name: Deploy
+     runs-on: ubuntu-latest
+     steps:
+     - name: test
+       uses: appleboy/ssh-action@master
+       env:
+        HOST: ${{secrets.HOST}}
+        USERNAME: ${{secrets.USERNAME}}
+        PORT: ${{secrets.PORT}}
+        SSHKEY: ${{secrets.SSHKEY}}
+       with:
+        source: "."
+        target: "var/www/socialbank.ga/html/"
+     - name: Execute
+       uses: appleboy/ssh-action@master
+       with: 
+        HOST: ${{secrets.HOST}}
+        USERNAME: ${{secrets.USERNAME}}
+        PORT: ${{secrets.PORT}}
+        SSHKEY: ${{secrets.SSHKEY}}
+        script: ls
+  
+  ```
+
 # Lessons Learned
 
-Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fails with numerous node.js dependencies that have been deprecated. A related problem is that the global gulp.cli needs to be installed and it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and as the gulp dependecy may need to be pre-installed in the linux distro. 
+Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fail on Github testing because of the numerous node.js dependencies that have been deprecated. A related problem is that if the global gulp.cli needs to be installed it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and therefore the gulp dependencies may need to be pre-installed in the selected linux distro. 
+
+Overall my experiences seems to suggest it it may be best to SSH into the production server and then carry out git-actions. This may save us the headache of moving from local to the live server where there are often other dependencies by the hosting platforms. Docker may be usful to quickly test out the Apps on different platforms. 
 
 
 
