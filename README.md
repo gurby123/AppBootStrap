@@ -65,26 +65,45 @@ Docker run command:
 docker run -d -p 8080:8080 appbootstrap3
 
 # Docker3
+Docker3 finally worked in displaying the webiste with nginx from alpine. It is totally working because of the bootstrap code and the advance users will need to figure out the setting to use nodejs on this website template.
 
-FROM ubuntu:18.04
-MAINTAINER uli.hitzel@gmail.com
+Dockerfile is as follows:
+FROM nginx:alpine
+## Copy a new configuration file setting listen port to 8080
+COPY ./default.conf /etc/nginx/conf.d/
 EXPOSE 8080
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Asia/Singapore
+CMD ["nginx", "-g", "daemon off;"]
 
-RUN apt-get update
-RUN apt-get install -y nodejs npm
-ENV USER root
-RUN npm install -g express-generator
-RUN npm install express --save
-RUN useradd -ms /bin/bash user
-COPY app.js /home/user/app.js
-COPY start.sh /home/user/start.sh
-RUN chmod a+x /home/user/start.sh
-USER user
-WORKDIR /home/user
 
-CMD ["sh","/home/user/start.sh"]
+default.conf is as follows:
+server {
+    listen       8080;
+    server_name  localhost;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+
+Docker build command:
+docker build . -t  appbootstrap
+
+Docker run command
+docker run -d -p 8080:8080 appbootstrap
+
+Command to check port usage:
+lsof -n -i4TCP:8080
+
+Comand to kill port usage
+kill -9 10653 (where 10653 is the pid from earlier occupying 8080)
 
 # Lessons Learned
 
