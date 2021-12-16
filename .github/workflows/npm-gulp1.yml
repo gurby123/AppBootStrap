@@ -36,8 +36,7 @@ jobs:
       env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-    - name: docker push
-      uses: actions/docker
+    
       with:
           args: push gurby123/AppBootStrap
         
