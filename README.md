@@ -65,7 +65,7 @@ Docker run command:
 docker run -d -p 8080:8080 appbootstrap3
 
 # Docker3
-Docker3 finally worked in displaying the webiste with nginx from alpine. It is totally working because of the bootstrap code and the advance users will need to figure out the setting to use nodejs on this website template.
+Docker3 finally worked in displaying the webiste with nginx from alpine. It is working because of the bootstrap code and the advance users will need to figure out the setting to use nodejs and gulp on this website template. However Nodejs 12.x passed the installtion while 14.x and 16.x failed
 
 Dockerfile is as follows:
 FROM nginx:alpine
