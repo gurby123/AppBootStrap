@@ -1,7 +1,11 @@
 # Overview of CICD Plan
 The idea was to develop and test a MIT licensed multipage Bootstrap/JavaScript template repository so that it could be easily replicated and deployed for future website development. Any changes to the website should automatically trigger a test before it is merged into the project. 
 
+
+
 ![Optional Text](../main/screenshots/diagram.png)
+
+
 
 # GitHub Demo
 The website can be viewed at https://gurby123.github.io/AppBootStrap/
