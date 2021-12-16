@@ -187,7 +187,7 @@ name: Deployment
 
 Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fail on Github testing because of the numerous node.js dependencies that have been deprecated. A related problem is that if the global gulp.cli needs to be installed it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and therefore the gulp dependencies may need to be pre-installed in the selected linux distro. 
 
-Overall my experiences seems to suggest it it may be best to SSH into the production server to pull the project once it is stable and tested. So the current project suits me just fine. This may still give us the headache of moving from local to the live server where there are often other dependencies by the hosting platforms. Docker may be usful to quickly test out the Apps on different platforms. Unless I move completely hosting on the cloud, for me using docker to host applications may not be best way to move forward.
+Overall my experiences seems to suggest it it may be best to SSH into the production server to pull the project once it is stable and tested. So the current project endpoint suits me just fine. The main advantage is the loading and reloading of github commit functions will not strain the VPS resources and potentially damage the other virtualhosts on the VPS. This may still give us the headache of moving from local to the live server where there are often other dependencies by the hosting platforms. Docker may be usful to quickly test out the Apps on different platforms. Unless I move completely hosting on the cloud, for me using docker to host applications may not be best way to move forward.
 
 
 
