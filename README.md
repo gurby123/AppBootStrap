@@ -15,7 +15,7 @@ The images on this website are not free and are only for demo purposes.
 The website was retrieved from a Themefisher demo with an MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests on 14.x and 16.x have failed. I am able to successfully integrate github-actions with the local machine using Node.js 12.x. The push function to the VPS server and Docker Hub is still work in progress.
 # Docker1 
 
-The Docker file with ALPINE and python broke the images and hyperlinks of the website giving a skeletal website witohut the bells and wistles of CSS and SASS. 
+The Docker file with ALPINE and python broke the images and hyperlinks of the website giving a skeletal website witohut the bells and whistles of CSS and SASS. 
 
 Dockerfile code was as follows:
 ```
