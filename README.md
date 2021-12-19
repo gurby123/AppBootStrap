@@ -13,9 +13,14 @@ The images on this website are not free and are only for demo purposes.
 
 # WorkFlow
 The website was retrieved from a Themefisher demo with an MIT license. The workflow file was added to monitor and test it before deployment. It was tested on Node.js 12.x, 14.x and 16.x. So far the tests on 14.x and 16.x have failed. I am able to successfully integrate github-actions with the local machine using Node.js 12.x. The push function to the VPS server and Docker Hub is still work in progress.
+
+# Google Cloud
+
+Start by trying to use gcr.io as suggested by the professor's node.api demo but soon realized that registry and artifacts hosting is only possible for paid account. So I finally decided to use my own server.
+
 # Docker1 
 
-The Docker file with ALPINE and python broke the images and hyperlinks of the website giving a skeletal website witohut the bells and wistles of CSS and SASS. 
+The Docker file with ALPINE and python broke the images and hyperlinks of the website giving a skeletal website witohut the bells and whistles of CSS and SASS. 
 
 Dockerfile code was as follows:
 ```
@@ -76,7 +81,7 @@ Docker run command:
 docker run -d -p 8080:8080 appbootstrap3
 ```
 # Docker3
-Docker3 finally worked in displaying the webiste with nginx from alpine. It is working because of the bootstrap code and the advance users will need to figure out the setting to use nodejs and gulp on this website template. However Nodejs 12.x passed the installtion while 14.x and 16.x failed
+Docker3 finally worked in displaying the webiste with nginx from alpine. It is working because of the bootstrap code while advance users will need to figure out the depedencies and setting to use nodejs and gulp on this website template. However Nodejs 12.x passed the installtion while 14.x and 16.x failed
 
 Dockerfile is as follows:
 ```
@@ -182,7 +187,7 @@ name: Deployment
 
 Even though the demo HTML website works out of the box, because of it bootstrap features, it tends to fail on Github testing because of the numerous node.js dependencies that have been deprecated. A related problem is that if the global gulp.cli needs to be installed it requires the sudo command. It may therefore not be practical or possible to create a docker image in the normal way and therefore the gulp dependencies may need to be pre-installed in the selected linux distro. 
 
-Overall my experiences seems to suggest it it may be best to SSH into the production server and then carry out git-actions. This may save us the headache of moving from local to the live server where there are often other dependencies by the hosting platforms. Docker may be usful to quickly test out the Apps on different platforms. 
+Overall my experiences seems to suggest it it may be best to SSH into the production server to pull the project once it is stable and tested. So the current project endpoint suits me just fine. The main advantage is the loading and reloading of github commit functions will not strain the VPS resources and potentially damage the other virtualhosts on the VPS. This may still give us the headache of moving from local to the live server where there are often other dependencies by the hosting platforms. Docker may be usful to quickly test out the Apps on different platforms. Unless I move completely hosting on the cloud, for me using docker to host applications may not be best way to move forward.
 
 
 
