@@ -6,7 +6,7 @@
   jobs:
    job_one:
      name: Deploy
-     runs-on: ubuntu-latest
+     runs-on: self-hosted
      steps:
      - name: test
        uses: appleboy/ssh-action@master
